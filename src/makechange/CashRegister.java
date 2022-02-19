@@ -95,10 +95,39 @@ public class CashRegister {
 		String result = "";
 		
 		if (bill == 10000) {
-			result += "\nHundreds: " + numBills;
+			result += numBills + " hundred";
+			result += makePlural ("hundred", numBills);
 		}
 		
 		return result;
+	}
+	
+	public static String makePlural(String bill, int numBills) {
+		String output = "";
+		
+		switch (output) {
+			case "hundred":
+			case "ten":
+			case "five":
+			case "one":
+			case "quarter":
+			case "dime":
+			case "nickel":
+				if (numBills > 1) {
+					output = "s";
+				}
+				break;
+			case "twent":
+			case "penn":
+				if (numBills > 1) {
+					output = "ies";
+				} else {
+					output = "y";
+				}
+				break;
+		}
+		
+		return output;
 	}
 
 }
