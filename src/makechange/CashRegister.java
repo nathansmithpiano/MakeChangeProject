@@ -62,6 +62,24 @@ public class CashRegister {
 			//hundreds
 			if (change >= 10000) {
 				bill = 10000;
+			} else if (change >= 5000) {
+				bill = 5000;
+			} else if (change >= 2000) {
+				bill = 2000;
+			} else if (change >= 1000) {
+				bill = 1000;
+			} else if (change >= 500) {
+				bill = 500;
+			} else if (change >= 100) {
+				bill = 100;
+			} else if (change >= 20) {
+				bill = 20;
+			} else if (change >= 10) {
+				bill = 10;
+			} else if (change >= 5) {
+				bill = 5;
+			} else if (change >= 1) {
+				bill = 1;
 			}
 			
 			//get number of each bill
@@ -96,7 +114,43 @@ public class CashRegister {
 		
 		if (bill == 10000) {
 			result += numBills + " hundred";
-			result += makePlural ("hundred", numBills);
+			result += makePlural("hundred", numBills);
+		}
+		if (bill == 5000) {
+			result += numBills + " fift";
+			result += makePlural("fift", numBills);
+		}
+		if (bill == 2000) {
+			result += numBills + " twent";
+			result += makePlural("twent", numBills);
+		}
+		if (bill == 1000) {
+			result += numBills + " ten";
+			result += makePlural("ten", numBills);
+		}
+		if (bill == 500) {
+			result += numBills + " five";
+			result += makePlural("five", numBills);
+		}
+		if (bill == 100) {
+			result += numBills + " one";
+			result += makePlural("one", numBills);
+		}
+		if (bill == 20) {
+			result += numBills + " quarter";
+			result += makePlural("quarter", numBills);
+		}
+		if (bill == 10) {
+			result += numBills + " dime";
+			result += makePlural("dime", numBills);
+		}
+		if (bill == 5) {
+			result += numBills + " nickel";
+			result += makePlural("nickel", numBills);
+		}
+		if (bill == 1) {
+			result += numBills + " penn";
+			result += makePlural("penn", numBills);
 		}
 		
 		return result;
@@ -105,7 +159,7 @@ public class CashRegister {
 	public static String makePlural(String bill, int numBills) {
 		String output = "";
 		
-		switch (output) {
+		switch (bill) {
 			case "hundred":
 			case "ten":
 			case "five":
@@ -114,15 +168,18 @@ public class CashRegister {
 			case "dime":
 			case "nickel":
 				if (numBills > 1) {
-					output = "s";
+					output = "s ";
+				} else {
+					output = " ";
 				}
 				break;
+			case "fift":
 			case "twent":
 			case "penn":
 				if (numBills > 1) {
-					output = "ies";
+					output = "ies ";
 				} else {
-					output = "y";
+					output = "y ";
 				}
 				break;
 		}
