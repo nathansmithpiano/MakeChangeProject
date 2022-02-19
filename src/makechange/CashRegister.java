@@ -66,9 +66,11 @@ public class CashRegister {
 			
 			//get number of each bill
 			numBills = getNumBills(change, bill);
+			//add to result string
+			output += billResult(numBills, bill);
 			//reduce change by remaining
 			change -= numBills * bill;
-			System.out.println("Change Remaining: " + change + ", Hundreds: " + numBills);
+//			System.out.println("Change Remaining: " + change + ", Hundreds: " + numBills);
 		}
 		
 		
@@ -87,6 +89,16 @@ public class CashRegister {
 		}
 		
 		return numBills;
+	}
+	
+	public static String billResult(int numBills, double bill) {
+		String result = "";
+		
+		if (bill == 10000) {
+			result += "\nHundreds: " + numBills;
+		}
+		
+		return result;
 	}
 
 }
