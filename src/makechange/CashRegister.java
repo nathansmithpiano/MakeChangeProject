@@ -72,8 +72,8 @@ public class CashRegister {
 				bill = 500;
 			} else if (change >= 100) {
 				bill = 100;
-			} else if (change >= 20) {
-				bill = 20;
+			} else if (change >= 25) {
+				bill = 25;
 			} else if (change >= 10) {
 				bill = 10;
 			} else if (change >= 5) {
@@ -88,7 +88,12 @@ public class CashRegister {
 			output += billResult(numBills, bill);
 			//reduce change by remaining
 			change -= numBills * bill;
-//			System.out.println("Change Remaining: " + change + ", Hundreds: " + numBills);
+			//add commas
+			if (change > 0) {
+				output += ", ";
+			} else {
+				output += ".";
+			}
 		}
 		
 		
@@ -117,12 +122,12 @@ public class CashRegister {
 			result += makePlural("hundred", numBills);
 		}
 		if (bill == 5000) {
-			result += numBills + " fift";
-			result += makePlural("fift", numBills);
+			result += numBills + " fifty";
+			result += makePlural("fifty", numBills);
 		}
 		if (bill == 2000) {
-			result += numBills + " twent";
-			result += makePlural("twent", numBills);
+			result += numBills + " twenty";
+			result += makePlural("twenty", numBills);
 		}
 		if (bill == 1000) {
 			result += numBills + " ten";
@@ -136,7 +141,7 @@ public class CashRegister {
 			result += numBills + " one";
 			result += makePlural("one", numBills);
 		}
-		if (bill == 20) {
+		if (bill == 25) {
 			result += numBills + " quarter";
 			result += makePlural("quarter", numBills);
 		}
@@ -161,25 +166,29 @@ public class CashRegister {
 		
 		switch (bill) {
 			case "hundred":
+			case "fifty":
+			case "twenty":
 			case "ten":
 			case "five":
 			case "one":
+				if (numBills > 1) {
+					output = " dollar bills";
+				} else {
+					output = " dollar bill";
+				}
+				break;
 			case "quarter":
 			case "dime":
 			case "nickel":
 				if (numBills > 1) {
-					output = "s ";
-				} else {
-					output = " ";
+					output = "s";
 				}
 				break;
-			case "fift":
-			case "twent":
 			case "penn":
 				if (numBills > 1) {
-					output = "ies ";
+					output = "ies";
 				} else {
-					output = "y ";
+					output = "y";
 				}
 				break;
 		}
