@@ -30,6 +30,7 @@ public class CashRegister {
 			output = "No change owed.";
 		} else {
 			//give change
+			output = makeChange(change);
 		}
 		
 		//final print
@@ -47,6 +48,45 @@ public class CashRegister {
 		change = (int) (tendered - amount);
 		
 		return change;
+	}
+	
+	public static String makeChange(int change) {
+		String output = "";
+		int numBills = 0;
+		
+		//value of a bill/coin
+		int bill = 0;
+		
+		while (change > 0) {
+			//set bills
+			//hundreds
+			if (change >= 10000) {
+				bill = 10000;
+			}
+			
+			//get number of each bill
+			numBills = getNumBills(change, bill);
+			//reduce change by remaining
+			change -= numBills * bill;
+			System.out.println("Change Remaining: " + change + ", Hundreds: " + numBills);
+		}
+		
+		
+		return output;
+	}
+	
+	public static int getNumBills(double change, double value) {
+		int numBills = 0;
+		
+		//remove change indivisible from value
+		change -= change % value;
+		
+		while (change > 0) {
+			numBills++;
+			change -= value;
+		}
+		
+		return numBills;
 	}
 
 }
